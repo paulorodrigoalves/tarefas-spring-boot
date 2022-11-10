@@ -1,52 +1,51 @@
 package com.api.parkingcontrol.services;
 
 import com.api.parkingcontrol.models.ParkingSpotModel;
-import com.api.parkingcontrol.repositories.ParkingSpotRepository;
+import com.api.parkingcontrol.repositories.TarefaRepository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
     @Service
 public class ParkingSpotService {
 
-    final ParkingSpotRepository parkingSpotRepository;
+    final TarefaRepository tarefaRepository;
 
-    public ParkingSpotService (ParkingSpotRepository parkingSpotRepository) {
-        this.parkingSpotRepository = parkingSpotRepository;
+    public ParkingSpotService (TarefaRepository tarefaRepository) {
+        this.tarefaRepository = tarefaRepository;
     }
 
     @Transactional
     public ParkingSpotModel save(ParkingSpotModel parkingSpotModel){
-        return parkingSpotRepository.save(parkingSpotModel);
+        return tarefaRepository.save(parkingSpotModel);
     }
 
     public boolean existsByLicensePlateCar(String licensePlateCar) {
-        return parkingSpotRepository.existsByLicensePlateCar(licensePlateCar);
+        return tarefaRepository.existsByLicensePlateCar(licensePlateCar);
     }
 
     public boolean existsByParkingSpotNumber(String parkingSpotNumber) {
-        return parkingSpotRepository.existsByParkingSpotNumber(parkingSpotNumber);
+        return tarefaRepository.existsByParkingSpotNumber(parkingSpotNumber);
     }
 
     public boolean existsByApartmentAndBlock(String apartment, String block) {
-            return parkingSpotRepository.existsByApartmentAndBlock(apartment, block);
+            return tarefaRepository.existsByApartmentAndBlock(apartment, block);
     }
 
     public Page<ParkingSpotModel> findAll(Pageable pageable) {
-        return parkingSpotRepository.findAll(pageable);
+        return tarefaRepository.findAll(pageable);
     }
 
     public Optional<ParkingSpotModel> findById(UUID id) {
-        return parkingSpotRepository.findById(id);
+        return tarefaRepository.findById(id);
     }
 
     public void delete(ParkingSpotModel parkingSpotModel) {
-        parkingSpotRepository.delete(parkingSpotModel);
+        tarefaRepository.delete(parkingSpotModel);
     }
 }
