@@ -1,6 +1,7 @@
 package com.api.parkingcontrol.services;
 
 import com.api.parkingcontrol.models.ParkingSpotModel;
+import com.api.parkingcontrol.models.TarefaModel;
 import com.api.parkingcontrol.repositories.TarefaRepository;
 
 import org.springframework.data.domain.Page;
@@ -12,11 +13,11 @@ import java.util.Optional;
 import java.util.UUID;
 
     @Service
-public class ParkingSpotService {
+public class TarefaService {
 
     final TarefaRepository tarefaRepository;
 
-    public ParkingSpotService (TarefaRepository tarefaRepository) {
+    public TarefaService (TarefaRepository tarefaRepository) {
         this.tarefaRepository = tarefaRepository;
     }
 
@@ -37,15 +38,15 @@ public class ParkingSpotService {
             return tarefaRepository.existsByApartmentAndBlock(apartment, block);
     }
 
-    public Page<ParkingSpotModel> findAll(Pageable pageable) {
+    public Page<TarefaModel> findAll(Pageable pageable) {
         return tarefaRepository.findAll(pageable);
     }
 
-    public Optional<ParkingSpotModel> findById(UUID id) {
+    public Optional<TarefaModel> findById(UUID id) {
         return tarefaRepository.findById(id);
     }
 
-    public void delete(ParkingSpotModel parkingSpotModel) {
-        tarefaRepository.delete(parkingSpotModel);
+    public void delete(TarefaModel tarefaModel) {
+        tarefaRepository.delete(tarefaModel);
     }
 }
